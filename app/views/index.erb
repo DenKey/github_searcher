@@ -1,0 +1,24 @@
+<h2>Search GitHub repositories</h2>
+<form role="search" action="/search" method="get">
+  <input type="search" name="query" placeholder="Search...">
+  <button>Search</button>
+</form>
+<% if @result %>
+  <% @result.each do |item| %>
+    <ul>
+      <li>
+        <a href="<%= item[:url] %>" target="_blank"><%= item[:full_name] %></a>
+      </li>
+    </ul>
+  <% end %>
+<% end %>
+
+<% if @result == [] %>
+  <b>Repositories not found</b>
+<% end %>
+
+<% if @error %>
+  <b>Client temporary doesn't works. Please try later.</b>
+  </br>
+  <i><%= @error %></i>
+<% end %>
